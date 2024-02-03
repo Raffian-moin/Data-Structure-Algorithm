@@ -1,4 +1,4 @@
-#### Selection Algorithm ####
+#### Selection Sort Algorithm ####
 
 #### Time and Space Complexity ####
 """
@@ -15,7 +15,6 @@ found in other indexes then swap value of first index and minimum value index. n
 then repeat the process for 1, 2, 3...n-1 indexes
 """
 
-
 arr = list(map(int, input().split()))
 
 for i in range(len(arr)):
@@ -26,5 +25,32 @@ for i in range(len(arr)):
             min_index = j
 
     arr[i], arr[min_index] = arr[min_index], arr[i]
+
+print(*arr)
+
+
+# Stabilized Selection Sort Algorithm
+
+"""
+To stabilize Selection Sort Algorithm instead of swapping the
+elements we put the smaller element in it's correct position.
+and move the elements from i to min_index - 1 by one position right.
+Thus ensuring smaller element in it's correct position and also
+maintaining the greater elements order of positions
+"""
+
+for i in range(len(arr)):
+    min_index = i
+    for j in range(i+1, len(arr)):
+        if arr[min_index] > arr[j]:
+            min_index = j
+
+    correctValue = arr[min_index]
+
+    while min_index > i:
+        arr[min_index] = arr[min_index-1]
+        min_index -=1
+
+    arr[i] = correctValue
 
 print(*arr)
