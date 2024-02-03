@@ -17,7 +17,7 @@ and continue the process
 """
 
 
-arr = [1, 2, 9, 6, 4, 3, 5, 8, 7, 10]
+arr = list(map(int, input().split()))
 
 for i in range(len(arr)):
     # Last ith elements are already sorted
@@ -25,5 +25,29 @@ for i in range(len(arr)):
     for j in range(len(arr)-i-1):
         if arr[j] > arr[j+1]:
             arr[j], arr[j+1] = arr[j+1], arr[j]
+
+print(*arr)
+
+# Bubble Sort Algorithm in O(n) time complexity when array is already sorted
+
+"""
+In bubble sort we swap elements only when current element is
+greater than next element. Keeping this in mind in an iteration,
+if no swap is performed means that all the next elements are in
+ascending order so we don't need to perform swaps for those elements.
+And we can stop sorting.
+"""
+
+for i in range(len(arr)):
+    # Last ith elements are already sorted
+    # so exclude them for comparison in current iteration
+    swap = False
+    for j in range(len(arr)-i-1):
+        if arr[j] > arr[j+1]:
+            arr[j], arr[j+1] = arr[j+1], arr[j]
+            swap = True
+
+    if swap == False:
+        break
 
 print(*arr)
